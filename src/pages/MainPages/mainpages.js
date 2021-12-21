@@ -1,12 +1,11 @@
 import React from 'react';
-import {Button, SafeAreaView} from 'react-native';
+import {Button, SafeAreaView, Text} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Detail from '../Detail';
 import styles from './mainpages.styles';
 import routes from '../../Navigation/routes';
-import navigation from '../../Navigation/navigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +22,7 @@ const navigation = useNavigation();
   </NavigationContainer>;
 
    const handleFavorites = (item) => {
-    navigation.navigate(routes.DETAIL, {item})
+    navigation.navigate("Favorites")
    }
 
   return (

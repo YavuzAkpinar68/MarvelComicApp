@@ -1,6 +1,6 @@
 export default {
-    MAINPAGES = 'MainPages';
-    FAVORITES = 'Favorites';
-    SETTINGS = 'Settigs';
-    DETAIL = 'Detail';
+    MAINPAGES : 'MainPages',
+    FAVORITES : 'Favorites',
+    SETTINGS : 'Settigs',
+    DETAIL : 'Detail'
 }

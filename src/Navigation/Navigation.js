@@ -3,20 +3,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainPages from '../pages/MainPages';
 import Favorites from '../pages/Favorites';
-import Settings from '../pages/Settings';
+import Settings from '../pages/SettingsPage';
 
 import routes from './routes';
 
 const Tabs = createBottomTabNavigator();
 
-export default function () {
+const Navigation = () => {
   return (
     <NavigationContainer>
       <Tabs.Navigator>
-        <Tabs.Screen name={routes.MAINPAGES} component={MainPages} />
-        <Tabs.Screen name={routes.FAVORITES} component={Favorites} />
-        <Tabs.Screen name={routes.SETTINGS} component={Settings} />
+        <Tabs.Screen name={"MainPages"} component={MainPages} />
+        <Tabs.Screen name={"Favorites"} component={Favorites} />
+        <Tabs.Screen name={"Settings"} component={Settings} />
       </Tabs.Navigator>
     </NavigationContainer>
   );
 }
+
+export default Navigation
