@@ -6,14 +6,15 @@ import Favorites from '../pages/Favorites';
 import Settings from '../pages/SettingsPage';
 
 import routes from './routes';
+import StackPage from './Stacks/stack';
 
 const Tabs = createBottomTabNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Tabs.Navigator>
-        <Tabs.Screen name={"MainPages"} component={MainPages} />
+      <Tabs.Navigator screenOptions={{headerShown:false}}>
+        <Tabs.Screen name={"StackPage"} component={StackPage} />
         <Tabs.Screen name={"Favorites"} component={Favorites} />
         <Tabs.Screen name={"Settings"} component={Settings} />
       </Tabs.Navigator>
