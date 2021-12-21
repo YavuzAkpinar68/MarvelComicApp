@@ -7,10 +7,9 @@ const MainPageCard = ({item, onPress}) => {
     <TouchableOpacity
       onPress={onPress} 
       style={styles.container}>
-      <Image 
+      <ImageBackground 
         source={{uri: `${item.thumbnail.path}.jpg`}}
         style={styles.image}>
-      </Image>
       <View style={styles.textView}>
         <Text style={styles.name}>{item.name}</Text>
         <View style={styles.comicsView}>
@@ -19,6 +18,7 @@ const MainPageCard = ({item, onPress}) => {
           <Text>Available Series : {item.series.available}</Text>
         </View>
       </View>
+      </ImageBackground>
 
     </TouchableOpacity>
   )

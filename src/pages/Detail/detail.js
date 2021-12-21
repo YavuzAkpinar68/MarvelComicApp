@@ -3,9 +3,9 @@ import React from 'react';
 import { SafeAreaView, Text} from 'react-native';
 import styles from './detail.styles';
 
-export default function({data}) {
+export default function() {
     const routes = useRoute()
-    const data = routes.params
+    const {data} = routes.params
     return (
         <SafeAreaView>
             <Text>{data.name}</Text>

@@ -20,7 +20,7 @@ export default function MainPages() {
    const source = data.filter(a =>a.name.includes(text)) ?? ""
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <SearchBar
         onChangeText={setText}
         value={text}
