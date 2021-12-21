@@ -12,7 +12,7 @@ import MainPageCard from '../../Component/Cards/MainPageCard';
 const Stack = createNativeStackNavigator();
 
 export default function MainPages() {
-  const {characterData, loading} = useFetch()
+  
 
   const navigation = useNavigation();
 
@@ -23,16 +23,18 @@ export default function MainPages() {
       <Stack.Screen name={routes.DETAIL} component={Detail} />
     </Stack.Navigator>
   </NavigationContainer>;
+  
 
    const handleFavorites = (item) => {
     navigation.navigate("Favorites")
    }
+   const {data, loading} = useFetch()
 
   return (
     <SafeAreaView>
       <FlatList 
-        data={characterData}
-        renderItem={() => <MainPageCard item={item}/>}
+        data={data}
+        renderItem={({item}) => <MainPageCard item={item}/>}
       />
       <Button title='Favorites' onPress={handleFavorites}  />
     </SafeAreaView>
