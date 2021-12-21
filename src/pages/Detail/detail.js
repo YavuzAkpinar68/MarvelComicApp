@@ -1,11 +1,14 @@
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Text} from 'react-native';
 import styles from './detail.styles';
 
-export default function() {
+export default function({data}) {
+    const routes = useRoute()
+    const data = routes.params
     return (
         <SafeAreaView>
-            <Text>Detail</Text>
+            <Text>{data.name}</Text>
         </SafeAreaView>
     )
 }

@@ -1,12 +1,15 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, TextInput, View } from "react-native";
 
 import styles from './searchbar.styles';
 
-export default function SearchBar() {
+export default function SearchBar({value, onChangeText,placeholder, ...otherProps}) {
     return (
-        <SafeAreaView>
-            <Text>SearchBar</Text>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <TextInput
+                value={value} 
+                onChangeText={onChangeText}
+                placeholder={placeholder}/>
+        </View>
     )
 }
