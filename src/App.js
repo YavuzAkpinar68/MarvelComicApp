@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import Navigation from './Navigation';
+import MarvelProvider from './Context/MarvelProvider';
 
 export default function App() {
   return (
-    <Navigation />
+    <MarvelProvider>
+      <Navigation />
+    </MarvelProvider>
   );
 }
