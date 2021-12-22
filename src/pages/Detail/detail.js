@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import { ActivityIndicator, FlatList, Image, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import Button from '../../Component/Button/button';
 import useFetch from '../../hooks/useFetch';
 import styles from './detail.styles';
@@ -12,28 +12,45 @@ export default function Detail () {
     const navigation = useNavigation()
     const [product, setProduct] = useState("comics")
     
+    const handleProduct = (a) => {
+        setProduct(a)
+    }
+    const handleCloseProduct = () => {
+        setProduct("")
+    }
+    const handleNavigation = () => {
+        navigation.navigate("ComicPage")
+    }
     
-        const handleProduct = (a) => {
-            setProduct(a)
-        }
     const endpoint = product
     const {data, loading} = useFetch(`/${item.id}/${endpoint}`)
-    console.log(item)
+    console.log(product)
     return (
         <SafeAreaView style={{flex:1}}>
-            <Image 
-                style={styles.image}
-                source={{uri:`${item.thumbnail.path}.jpg`}}/>
-            <Text>{item.name}</Text>
-            <Text>{item.description}</Text>
+            <View style={styles.cardContainer}>
+                <Image 
+                    style={styles.image}
+                    source={{uri:`${item.thumbnail.path}.jpg`}}/>
+                <View style={styles.textView}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    {
+                        item.description ?
+                        <Text style={styles.description}>{item.description}</Text>
+                        :<Text style={styles.description}>No description</Text>
+                    }
+                </View>
+            </View>
             <View style={styles.buttonView}>
                 <Button title="comics" onPress={handleProduct}/>
-                <Button title="stories" onPress={handleProduct}/>
-                <Button title="series"onPress={handleProduct}/>
+                <Button title="close comics" onPress={handleCloseProduct}/>
             </View>
-            <FlatList
-                data={data}
-                renderItem={({item}) => <ComicCard item={item}/>}/>
+            {
+                loading ? <ActivityIndicator />:
+                <FlatList
+                    data={product && data}
+                    renderItem={({item}) => <ComicCard onPress={handleNavigation} item={item}/>}
+                />
+            }
         </SafeAreaView>
     )
 }
