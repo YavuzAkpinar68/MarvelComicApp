@@ -12,10 +12,10 @@ export default function MainPages() {
 
   const navigation = useNavigation();
 
-   const handleFavorites = ({item}) => {
-    navigation.navigate("Detail", {item:item})
-   }
-   const {data, loading} = useFetch()
+   const handleNavigateDetailPage = ({item}) => (
+    <MainPageCard item = {item} onPress = {() => navigation.navigate("Detail", {item:item})} />
+   )
+   const {data, loading} = useFetch(``)
 
    const source = data.filter(a =>a.name.includes(text)) ?? ""
 
@@ -28,9 +28,7 @@ export default function MainPages() {
         />
       <FlatList 
         data={source}
-        renderItem={({item}) => <MainPageCard 
-          onPress={handleFavorites}
-          item={item}/>}
+        renderItem={handleNavigateDetailPage}
       />
     </SafeAreaView>
   );

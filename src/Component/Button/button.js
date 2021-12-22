@@ -1,12 +1,12 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity } from "react-native";
 
 import styles from './button.styles';
 
-export default function Button () {
+export default function Button ({title, onPress}) {
     return (
-        <SafeAreaView>
-            <Text>Button</Text>
-        </SafeAreaView>
+       <TouchableOpacity  style={styles.container} onPress={() => onPress(title)}>
+           <Text>{title}</Text>
+       </TouchableOpacity>
     )
 }
