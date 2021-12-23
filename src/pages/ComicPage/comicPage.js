@@ -5,14 +5,17 @@ import useFetch from "../../hooks/useFetch";
 
 const ComicPage = ({item}) => {
   const route = useRoute()
-  const info = route.params.item
-  const URI = info.comics.items.find(item => item.resourceURI).resourceURI
-  const {data, loading} = useFetch(`${URI}`)
+  const idInfo = route.params.item.id
+  const {data, loading} = useFetch(`http://gateway.marvel.com/v1/public/comics/`,`${idInfo}`)
   const infoo = Object.fromEntries(data)
-  console.log(infoo)
+  console.log(idInfo)
   return(
     <SafeAreaView>
-      <Text>{data.title}</Text>
+      {data.map((a, ind) => {
+        return(
+          <Text>{a.title}</Text>
+        )
+      })}
     </SafeAreaView>
   )
 }

@@ -29,8 +29,8 @@ export default function Detail() {
   const handleCloseProduct = () => {
     setProduct('');
   };
-  const handleNavigation = () => (
-    navigation.navigate('ComicPage', {item:item})
+  const handleNavigation = ({item}) => (
+    <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
   const handleAddFavorites = marvel =>
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
@@ -64,9 +64,7 @@ export default function Detail() {
       ) : (
         <FlatList
           data={product && data}
-          renderItem={({item}) => (
-            <ComicCard onPress={handleNavigation} item={item} />
-          )}
+          renderItem={handleNavigation}
         />
       )}
     </SafeAreaView>
