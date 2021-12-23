@@ -23,7 +23,7 @@ export default function reducer(state, action) {
       );
 
       const updatedFavoritesList = [...state.favoritesList];
-      updatedFavoritesList.splice[(marvelFavoritesIndex, 1)];
+      updatedFavoritesList.splice(marvelFavoritesIndex, 1);
 
       return {...state, favoritesList: updatedFavoritesList};
     }
