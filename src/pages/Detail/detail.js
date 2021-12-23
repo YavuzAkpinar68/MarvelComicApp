@@ -29,14 +29,14 @@ export default function Detail() {
   const handleCloseProduct = () => {
     setProduct('');
   };
-  const handleNavigation = () => {
-    navigation.navigate('ComicPage');
-  };
+  const handleNavigation = () => (
+    navigation.navigate('ComicPage', {item:item})
+  );
   const handleAddFavorites = marvel =>
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
 
   const endpoint = product;
-  const {data, loading} = useFetch(`/${item.id}/${endpoint}`);
+  const {data, loading} = useFetch(`https://gateway.marvel.com:443/v1/public/characters`,`/${item.id}/${endpoint}`);
   
   return (
     <SafeAreaView style={{flex: 1}}>

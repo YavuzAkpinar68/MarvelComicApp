@@ -15,7 +15,7 @@ export default function MainPages() {
    const handleNavigateDetailPage = ({item}) => (
     <MainPageCard item = {item} onPress = {() => navigation.navigate("Detail", {item:item})} />
    )
-   const {data, loading} = useFetch(``)
+   const {data, loading} = useFetch(`https://gateway.marvel.com:443/v1/public/characters`,``)
 
    const source = data.filter(a =>a.name.includes(text)) ?? ""
 
@@ -29,6 +29,8 @@ export default function MainPages() {
       <FlatList 
         data={source}
         renderItem={handleNavigateDetailPage}
+        numColumns={2}
+        horizontal={false}
       />
     </SafeAreaView>
   );
