@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function reducer(state, action) {
   switch (action.type) {
     case 'ADD_TO_FAVORITES': {
@@ -12,6 +14,8 @@ export default function reducer(state, action) {
 
       const updatedFavorites = [...state.favoritesList, selectedMarvel];
 
+      AsyncStorage.setItem('@FAVORITES', selectedMarvel);
+
       return {...state, favoritesList: updatedFavorites};
     }
 
@@ -24,6 +28,8 @@ export default function reducer(state, action) {
 
       const updatedFavoritesList = [...state.favoritesList];
       updatedFavoritesList.splice(marvelFavoritesIndex, 1);
+
+      AsyncStorage.removeItem('@FAVORITES');
 
       return {...state, favoritesList: updatedFavoritesList};
     }
