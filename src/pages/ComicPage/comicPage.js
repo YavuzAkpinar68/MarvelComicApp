@@ -1,7 +1,8 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import useFetch from "../../hooks/useFetch";
+import styles from "./comicPageStyle";
 
 const ComicPage = ({item}) => {
   const route = useRoute()
@@ -11,11 +12,43 @@ const ComicPage = ({item}) => {
   console.log(idInfo)
   return(
     <SafeAreaView>
-      {data.map((a, ind) => {
-        return(
-          <Text>{a.title}</Text>
-        )
-      })}
+      <ScrollView>
+        {data.map((a, ind) => {
+          return(
+            <View key={ind}>
+              <Image
+                style={styles.image} 
+                source={{uri:`${a.thumbnail.path}.jpg`}}/>
+              <View style={styles.titleView}>
+                <Text style={styles.title}>{a.title}</Text>
+                <Text>{a.description}</Text>
+                <Text>{a.pageCount}</Text>
+              </View>
+              <Text style={styles.title}>Creators</Text>  
+              {a.creators.items.map((b, ind) => {
+                return (
+                  <View style={styles.creatorView} key={ind}>
+                    <Text>{b.name    }</Text>
+                    <Text>{   b.role}</Text>
+                  </View>
+                )
+              })
+              }
+              <Text style={styles.title}>Characters</Text>
+              {a.characters.items.map((b, ind) => {
+                return (
+                  <View key={ind}>
+                    <Text>{b.name}</Text>
+                    <Text>{b.role}</Text>
+                  </View>
+                )
+              })
+              }
+            </View>
+
+          )
+        })}
+      </ScrollView>
     </SafeAreaView>
   )
 }
