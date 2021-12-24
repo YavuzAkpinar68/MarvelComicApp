@@ -1,5 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState, useContext} from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {
   ActivityIndicator,
   FlatList,
@@ -29,15 +30,16 @@ export default function Detail() {
   const handleCloseProduct = () => {
     setProduct('');
   };
-  const handleNavigation = () => (
-    navigation.navigate('ComicPage', {item:item})
-  );
+  const handleNavigation = () => navigation.navigate('ComicPage', {item: item});
   const handleAddFavorites = marvel =>
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
 
   const endpoint = product;
-  const {data, loading} = useFetch(`https://gateway.marvel.com:443/v1/public/characters`,`/${item.id}/${endpoint}`);
-  
+  const {data, loading} = useFetch(
+    `https://gateway.marvel.com:443/v1/public/characters`,
+    `/${item.id}/${endpoint}`,
+  );
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.cardContainer}>
@@ -58,7 +60,14 @@ export default function Detail() {
         <Button title="comics" onPress={handleProduct} />
         <Button title="close comics" onPress={handleCloseProduct} />
       </View>
-      <Button title="Add Favorites" onPress={() => handleAddFavorites(item)} />
+      <View style={styles.icon}>
+        <Icon
+          name="heart"
+          size={30}
+          color={'red'}
+          onPress={() => handleAddFavorites(item)}
+        />
+      </View>
       {loading ? (
         <ActivityIndicator />
       ) : (

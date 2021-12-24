@@ -32,5 +32,8 @@ export default StyleSheet.create({
       borderRadius:15,
       textAlign:"center",
       borderColor:"silver"
+    },
+    icon: {
+      alignSelf: 'center'
     }
 })

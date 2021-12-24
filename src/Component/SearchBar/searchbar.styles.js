@@ -7,6 +7,11 @@ export default StyleSheet.create({
       marginRight:10,
       marginTop:5,
       marginBottom:5,
-      borderRadius:10
+      borderRadius:10,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingLeft: 10,
+      paddingRight: 10,
     }
 })
