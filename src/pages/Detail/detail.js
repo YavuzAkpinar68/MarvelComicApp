@@ -23,6 +23,7 @@ export default function Detail() {
   const navigation = useNavigation();
   const [product, setProduct] = useState('comics');
   const {t, i18} = useTranslation()
+  const [isSelected, setIsSelected] = useState(false)
 
   const {dispatch} = useContext(MarvelContext);
 
@@ -35,8 +36,10 @@ export default function Detail() {
   const handleNavigation = ({item}) => (
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
-  const handleAddFavorites = marvel =>
+  const handleAddFavorites = (marvel) => {
+    setIsSelected(true)
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
+  }
 
   const endpoint = product;
   const {data, loading} = useFetch(
@@ -69,7 +72,7 @@ export default function Detail() {
         <Icon
           name="heart"
           size={30}
-          color={'red'}
+          color={isSelected ? 'red' : "gray"}
           onPress={() => handleAddFavorites(item)}
         />
       </View>

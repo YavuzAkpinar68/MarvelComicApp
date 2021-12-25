@@ -5,7 +5,8 @@ import styles from "./ComicCardStyle";
 const ComicCard = ({item, onPress}) => {
   return(
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text>{item.title}</Text>
+      <Image style ={styles.image}source={{uri:`${item.thumbnail.path}.jpg`}}></Image>
+      <Text style={styles.text}>{item.title}</Text>
     </TouchableOpacity>
   )
 }
