@@ -31,6 +31,9 @@ const Settings = () => {
                 selectedColor="red"
                 hasPadding
                 onPress={(language) => i18n.changeLanguage(language) }></SwitchSelector>
+                <Button title="dark" onPress={() => setLanguage("dark")}></Button>
+                <Button title="default" onPress={() => setLanguage("default")}></Button>
+
         </SafeAreaView>
     )
 }
