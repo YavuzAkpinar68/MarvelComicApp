@@ -7,6 +7,8 @@ export const MarvelContext = createContext();
 
 export default function MarvelProvider({children}) {
   const [favorites, setFavorites] = useState(null);
+  const [isSelected, setSelection] = useState(false)
+
 
   useEffect(() => {
     AsyncStorage.getItem('@FAVORITES').then(addFavorited => {
@@ -18,7 +20,7 @@ export default function MarvelProvider({children}) {
   const [state, dispatch] = useReducer(reducer, store);
 
   return (
-    <MarvelContext.Provider value={{state, dispatch}}>
+    <MarvelContext.Provider value={{state, dispatch, isSelected, setSelection}}>
       {children}
     </MarvelContext.Provider>
   );

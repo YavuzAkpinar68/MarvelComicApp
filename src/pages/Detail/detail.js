@@ -10,7 +10,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import Button from '../../Component/Button/button';
 import useFetch from '../../hooks/useFetch';
 import styles from './detail.styles';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
@@ -22,16 +21,15 @@ export default function Detail() {
   const item = route.params.item;
   const navigation = useNavigation();
   const {t, i18} = useTranslation()
-  const [isSelected, setIsSelected] = useState(false)
 
-  const {dispatch} = useContext(MarvelContext);
+  const {dispatch, isSelected, setSelection} = useContext(MarvelContext);
 
   const handleNavigation = ({item}) => (
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
   const handleAddFavorites = (marvel) => {
-    setIsSelected(true)
     dispatch({type: 'ADD_TO_FAVORITES_COMIC', payload: {marvel}});
+    setSelection(true)
   }
 
   const endpoint = 'comics';

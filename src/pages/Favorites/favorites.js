@@ -8,7 +8,7 @@ import useFetch from '../../hooks/useFetch';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
 
 export default function Favorites() {
-  const {state, dispatch} = useContext(MarvelContext);
+  const {state, dispatch,setSelection} = useContext(MarvelContext);
   const [favorites, setFavorites] = useState([])
 
 
@@ -23,8 +23,12 @@ export default function Favorites() {
 
   const handleRemoveFavorites = marvel =>
     dispatch({type: 'REMOVE_FROM_FAVORITES', payload: {marvel}});
+    setSelection(false)
+
   const handleRemoveFavoritesComic = marvel =>
     dispatch({type: 'REMOVE_FROM_FAVORITES_COMIC', payload: {marvel}});  
+    setSelection(false)
+
 
   const renderMarvel = ({item}) => (
     <MainPageCard item={item} onPress={() => handleRemoveFavorites(item)} />
@@ -37,7 +41,8 @@ export default function Favorites() {
     <SafeAreaView>
       <Text>Favorites</Text>
       <Button title='aaa' onPress={() => console.log(state.favoritesList)}></Button>
-      <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} />
+      <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} numColumns={2}/>
+      <FlatList data={state.favoritesList} renderItem={renderMarvel}/>
     </SafeAreaView>
   );
 }

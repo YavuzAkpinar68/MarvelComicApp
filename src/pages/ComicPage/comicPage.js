@@ -44,7 +44,7 @@ const ComicPage = ({item}) => {
                   name="heart"
                   size={30}
                   color={isSelected ? 'red' : "gray"}
-                  onPress={() => handleAddFavorites(item)}
+                  onPress={() => handleAddFavorites(route.params.item)}
                 />
               </View> 
               {a.creators.items.map((b, ind) => {
