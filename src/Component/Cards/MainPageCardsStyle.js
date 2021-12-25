@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     margin:10,
   },
   image:{
-    flex:1,
     height:Dimensions.get("screen").height/4,
     width:Dimensions.get("window").width/2.3,
     justifyContent:"flex-end",
@@ -20,7 +19,8 @@ const styles = StyleSheet.create({
     justifyContent:"space-around",
     backgroundColor:"#000000a0"
   },
-  comicsView:{
+  title:{
+    fontSize:20
   }
 })
 

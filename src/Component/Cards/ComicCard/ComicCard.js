@@ -1,13 +1,21 @@
 import React from "react";
-import { Text, TouchableOpacity, Image } from "react-native";
-import styles from "./ComicCardStyle";
+import { Text, TouchableOpacity, ImageBackground, View } from "react-native";
+import styles from "../MainPageCardsStyle";
 
 const ComicCard = ({item, onPress}) => {
   return(
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image style ={styles.image}source={{uri:`${item.thumbnail.path}.jpg`}}></Image>
-      <Text style={styles.text}>{item.title}</Text>
-    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={onPress} 
+      style={styles.container}>
+    <ImageBackground 
+      source={{uri: `${item.thumbnail.path}.jpg`}}
+      style={styles.image}>
+    <View style={styles.textView}>
+      <Text style={styles.title}>{item.title}</Text>
+    </View>
+    </ImageBackground>
+
+  </TouchableOpacity>
   )
 }
 

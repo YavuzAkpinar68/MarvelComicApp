@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     image:{
-      height:Dimensions.get("screen").height/3,
+      height:Dimensions.get("screen").height/3.2,
       width:Dimensions.get("screen").width/1,
       resizeMode:"contain",
       alignSelf:"center",
@@ -15,15 +15,19 @@ export default StyleSheet.create({
     },
     name:{
       fontSize:20,
-      alignSelf:"center"
+      alignSelf:"center",
     },
     description:{
       fontSize:13
     },
     cardContainer:{
       margin:10,
-      alignItems:"center"
+      alignItems:"center",
+      flex:1.5
       
+    },
+    outsideOfCardContainer:{
+      flex:1
     },
     textView:{
       padding:10,

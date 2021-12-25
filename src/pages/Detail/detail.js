@@ -21,18 +21,11 @@ export default function Detail() {
   const route = useRoute();
   const item = route.params.item;
   const navigation = useNavigation();
-  const [product, setProduct] = useState('comics');
   const {t, i18} = useTranslation()
   const [isSelected, setIsSelected] = useState(false)
 
   const {dispatch} = useContext(MarvelContext);
 
-  const handleProduct = a => {
-    setProduct(a);
-  };
-  const handleCloseProduct = () => {
-    setProduct('');
-  };
   const handleNavigation = ({item}) => (
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
@@ -41,7 +34,7 @@ export default function Detail() {
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
   }
 
-  const endpoint = product;
+  const endpoint = 'comics';
   const {data, loading} = useFetch(
     `https://gateway.marvel.com:443/v1/public/characters`,
     `/${item.id}/${endpoint}`,
@@ -64,27 +57,28 @@ export default function Detail() {
           }
         </View>
       </View>
-      <View style={styles.buttonView}>
-        <Button title={t('Comic')} onPress={handleProduct} />
-        <Button title={t('CloseComic')} onPress={handleCloseProduct} />
+      <View style={styles.outsideOfCardContainer}>
+        <View style={styles.icon}>
+          <Icon
+            name="heart"
+            size={30}
+            color={isSelected ? 'red' : "gray"}
+            onPress={() => handleAddFavorites(item)}
+          />
+        </View>
+        <Text style={styles.name}>{t('Comic')}</Text>
+        {loading ? (
+          <ActivityIndicator />
+          ) : ( 
+                <FlatList
+                  data={data}
+                  renderItem={handleNavigation}
+                  horizontal={true}
+                  contentContainerstyle={{alignItems:"flex-end"}}
+                />
+          )
+        }
       </View>
-      <View style={styles.icon}>
-        <Icon
-          name="heart"
-          size={30}
-          color={isSelected ? 'red' : "gray"}
-          onPress={() => handleAddFavorites(item)}
-        />
-      </View>
-      {loading ? (
-        <ActivityIndicator />
-        ) : (
-              <FlatList
-                data={product && data}
-                renderItem={handleNavigation}
-              />
-        )
-      }
     </SafeAreaView>
   );
 }
