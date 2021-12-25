@@ -31,7 +31,7 @@ export default function Detail() {
   );
   const handleAddFavorites = (marvel) => {
     setIsSelected(true)
-    dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
+    dispatch({type: 'ADD_TO_FAVORITES_COMIC', payload: {marvel}});
   }
 
   const endpoint = 'comics';

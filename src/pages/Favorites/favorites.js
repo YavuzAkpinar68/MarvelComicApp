@@ -5,10 +5,10 @@ import {MarvelContext} from '../../Context/MarvelProvider';
 import styles from './favorites.styles';
 import MainPageCard from '../../Component/Cards/MainPageCard';
 import useFetch from '../../hooks/useFetch';
+import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
 
 export default function Favorites() {
   const {state, dispatch} = useContext(MarvelContext);
-  const {data, loading} = useFetch(`https://gateway.marvel.com:443/v1/public/characters`,``)
   const [favorites, setFavorites] = useState([])
 
 
@@ -20,20 +20,24 @@ export default function Favorites() {
    
   }, []);
 
-  const source = data.filter(a =>a.name.includes(state.favoritesList.toString())) ?? ""
 
   const handleRemoveFavorites = marvel =>
     dispatch({type: 'REMOVE_FROM_FAVORITES', payload: {marvel}});
+  const handleRemoveFavoritesComic = marvel =>
+    dispatch({type: 'REMOVE_FROM_FAVORITES_COMIC', payload: {marvel}});  
 
   const renderMarvel = ({item}) => (
     <MainPageCard item={item} onPress={() => handleRemoveFavorites(item)} />
+  );
+  const renderMarvelComic = ({item}) => (
+    <ComicCard item={item} onPress={() => handleRemoveFavoritesComic(item)} />
   );
 
   return (
     <SafeAreaView>
       <Text>Favorites</Text>
       <Button title='aaa' onPress={() => console.log(state.favoritesList)}></Button>
-      <FlatList data={state.favoritesList} renderItem={renderMarvel} />
+      <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} />
     </SafeAreaView>
   );
 }

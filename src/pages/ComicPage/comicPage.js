@@ -1,8 +1,10 @@
 import { useRoute } from "@react-navigation/native";
 import { t } from "i18next";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
+import  Icon from "react-native-vector-icons/AntDesign";
+import { MarvelContext } from "../../Context/MarvelProvider";
 import useFetch from "../../hooks/useFetch";
 import styles from "./comicPageStyle";
 
@@ -12,6 +14,14 @@ const ComicPage = ({item}) => {
   const {data, loading} = useFetch(`http://gateway.marvel.com/v1/public/comics/`,`${idInfo}`)
   const infoo = Object.fromEntries(data)
   const {t, i18n} = useTranslation()
+  const {dispatch} = useContext(MarvelContext)
+  const [isSelected, setIsSelected] = useState(false)
+
+
+  const handleAddFavorites = (marvel) => {
+    setIsSelected(true)
+    dispatch({type: 'ADD_TO_FAVORITES_COMIC', payload: {marvel}});
+  }
 
   console.log(idInfo)
   return(
@@ -28,7 +38,15 @@ const ComicPage = ({item}) => {
                 <Text>{a.description}</Text>
                 <Text>{a.pageCount}</Text>
               </View>
-              <Text style={styles.title}>{t('Creators')}</Text>  
+              <Text style={styles.title}>{t('Creators')}</Text> 
+              <View style={styles.icon}>
+                <Icon
+                  name="heart"
+                  size={30}
+                  color={isSelected ? 'red' : "gray"}
+                  onPress={() => handleAddFavorites(item)}
+                />
+              </View> 
               {a.creators.items.map((b, ind) => {
                 return (
                   <View style={styles.creatorView} key={ind}>

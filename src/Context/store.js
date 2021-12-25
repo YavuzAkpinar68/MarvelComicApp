@@ -1,3 +1,4 @@
 export default {
   favoritesList: [],
+  favoritesListComic: [],
 };

@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import SwitchSelector from 'react-native-switch-selector';
-import {ThemeContext} from '../../Context/ThemeContext/ThemeContext';
 import {TranslationContext} from '../../Context/TranslationContext/TranslationProvider';
 import styles from './settings.styles';
 
@@ -31,7 +30,6 @@ const Settings = () => {
     {label: 'English', value: 'en'},
     {label: 'Turkish', value: 'tr'},
   ];
-  const {theme, setTheme} = useContext(ThemeContext);
 
     
     return(

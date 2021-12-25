@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { Appearance } from 'react-native';
 import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import Favorites from '../pages/Favorites';
 import Settings from '../pages/SettingsPage';

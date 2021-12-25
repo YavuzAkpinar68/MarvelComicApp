@@ -38,6 +38,6 @@ export default StyleSheet.create({
       borderColor:"silver"
     },
     icon: {
-      alignSelf: 'center'
-    }
+      alignSelf: 'center',
+    },
 })
