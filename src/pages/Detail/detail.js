@@ -15,12 +15,14 @@ import useFetch from '../../hooks/useFetch';
 import styles from './detail.styles';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
 import {MarvelContext} from '../../Context/MarvelProvider';
+import { useTranslation } from 'react-i18next';
 
 export default function Detail() {
   const route = useRoute();
   const item = route.params.item;
   const navigation = useNavigation();
   const [product, setProduct] = useState('comics');
+  const {t, i18} = useTranslation()
 
   const {dispatch} = useContext(MarvelContext);
 
@@ -30,13 +32,9 @@ export default function Detail() {
   const handleCloseProduct = () => {
     setProduct('');
   };
-<<<<<<< HEAD
-  const handleNavigation = () => navigation.navigate('ComicPage', {item: item});
-=======
   const handleNavigation = ({item}) => (
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
->>>>>>> 2bceff4ed9786d2e8c0eea00ba9037a5c844fe27
   const handleAddFavorites = marvel =>
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
 
@@ -57,14 +55,15 @@ export default function Detail() {
           <Text style={styles.name}>{item.name}</Text>
           {item.description ? (
             <Text style={styles.description}>{item.description}</Text>
-          ) : (
+            ) : (
             <Text style={styles.description}>No description</Text>
-          )}
+            )
+          }
         </View>
       </View>
       <View style={styles.buttonView}>
-        <Button title="comics" onPress={handleProduct} />
-        <Button title="close comics" onPress={handleCloseProduct} />
+        <Button title={t('Comic')} onPress={handleProduct} />
+        <Button title={t('CloseComic')} onPress={handleCloseProduct} />
       </View>
       <View style={styles.icon}>
         <Icon
@@ -76,12 +75,13 @@ export default function Detail() {
       </View>
       {loading ? (
         <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={product && data}
-          renderItem={handleNavigation}
-        />
-      )}
+        ) : (
+              <FlatList
+                data={product && data}
+                renderItem={handleNavigation}
+              />
+        )
+      }
     </SafeAreaView>
   );
 }

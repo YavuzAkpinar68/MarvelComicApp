@@ -1,5 +1,7 @@
 import { useRoute } from "@react-navigation/native";
+import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import useFetch from "../../hooks/useFetch";
 import styles from "./comicPageStyle";
@@ -9,6 +11,8 @@ const ComicPage = ({item}) => {
   const idInfo = route.params.item.id
   const {data, loading} = useFetch(`http://gateway.marvel.com/v1/public/comics/`,`${idInfo}`)
   const infoo = Object.fromEntries(data)
+  const {t, i18n} = useTranslation()
+
   console.log(idInfo)
   return(
     <SafeAreaView>
@@ -24,7 +28,7 @@ const ComicPage = ({item}) => {
                 <Text>{a.description}</Text>
                 <Text>{a.pageCount}</Text>
               </View>
-              <Text style={styles.title}>Creators</Text>  
+              <Text style={styles.title}>{t('Creators')}</Text>  
               {a.creators.items.map((b, ind) => {
                 return (
                   <View style={styles.creatorView} key={ind}>
@@ -34,7 +38,7 @@ const ComicPage = ({item}) => {
                 )
               })
               }
-              <Text style={styles.title}>Characters</Text>
+              <Text style={styles.title}>{t('Characters')}</Text>
               {a.characters.items.map((b, ind) => {
                 return (
                   <View key={ind}>
