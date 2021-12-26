@@ -11,8 +11,6 @@ import { useTranslation } from 'react-i18next';
 export default function MainPages() {
   const [text, setText] = useState("")
   const {t, i18} = useTranslation()
-
-
   const navigation = useNavigation();
 
    const handleNavigateDetailPage = ({item}) => (

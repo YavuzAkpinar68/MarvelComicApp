@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     height:Dimensions.get("screen").height/4,
     width:Dimensions.get("window").width/2.3,
     justifyContent:"flex-end",
-
   },
   name:{
     fontSize:25,

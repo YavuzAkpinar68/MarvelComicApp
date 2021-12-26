@@ -9,17 +9,18 @@ import Icon  from 'react-native-vector-icons/AntDesign';
 import routes from './routes';
 import StackPage from './Stacks/stack';
 import { useTranslation } from 'react-i18next';
-import { TranslationContext } from '../Context/TranslationContext/TranslationProvider';
+import { ThemeContext } from '../Context/ThemeContext/ThemeProvider';
 
 
 
 const Tabs = createBottomTabNavigator();
 
 const Navigation = () => {
-  const {language, setLanguage} = useContext(TranslationContext)
+  const {theme} = useContext(ThemeContext)
   const {t, i18n} = useTranslation()
+
   return (
-    <NavigationContainer theme={language === "dark" ? DarkTheme :DefaultTheme}>
+    <NavigationContainer theme={theme === "dark" ? DarkTheme :DefaultTheme}>
       <Tabs.Navigator screenOptions={{headerShown: false}}>
         <Tabs.Screen
           name={t('StackPage')}

@@ -12,7 +12,6 @@ const ComicPage = ({item}) => {
   const route = useRoute()
   const idInfo = route.params.item.id
   const {data, loading} = useFetch(`http://gateway.marvel.com/v1/public/comics/`,`${idInfo}`)
-  const infoo = Object.fromEntries(data)
   const {t, i18n} = useTranslation()
   const {dispatch} = useContext(MarvelContext)
   const [isSelected, setIsSelected] = useState(false)
