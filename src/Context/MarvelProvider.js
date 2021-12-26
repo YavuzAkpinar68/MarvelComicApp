@@ -10,6 +10,19 @@ export default function MarvelProvider({children}) {
   const [state, dispatch] = useReducer(reducer, store);
   const [favorites, setFavorites] = useState([])
 
+  const getStoreData = async () => {
+    try {
+       const response = await AsyncStorage.getItem('@FAVORITES')
+       return response && dispatch({type:'SET_FAVORITES', payload:JSON.parse(response)})
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    getStoreData()
+  },[])
+
   return (
     <MarvelContext.Provider value={{state, dispatch, isSelected, setSelection, favorites, setFavorites}}>
       {children}

@@ -4,9 +4,7 @@ import {SafeAreaView, Text, FlatList, Button} from 'react-native';
 import {MarvelContext} from '../../Context/MarvelProvider';
 import styles from './favorites.styles';
 import MainPageCard from '../../Component/Cards/MainPageCard';
-import useFetch from '../../hooks/useFetch';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
-import store from '../../Context/store';
 
 export default function Favorites() {
   const {setFavorites , favorites, state, dispatch,setSelection} = useContext(MarvelContext);
@@ -22,19 +20,10 @@ export default function Favorites() {
      }).catch()
     }
 
+    useEffect(() => {
+      storeData()
+    },[state.favoritesList])
   
-
-  const  clearData = () => {
-    AsyncStorage.setItem('@FAVORITES', JSON.stringify([])).then(() => {
-      setFavorites([])
-    }).catch()
-  }
-  
-  
-
-
-   
-
 
   const handleRemoveFavorites = marvel =>
     dispatch({type: 'REMOVE_FROM_FAVORITES', payload: {marvel}});
@@ -55,8 +44,6 @@ export default function Favorites() {
   return (
     <SafeAreaView>
       <Text>Favorites</Text>
-      <Button title='clear' onPress={() => clearData() }></Button>
-      <Button title='get' onPress={() => storeData()}></Button>
       <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} numColumns={2}/>
       <FlatList data={favorites} renderItem={renderMarvel} numColumns={2}/>
     </SafeAreaView>

@@ -28,7 +28,7 @@ export default function Detail() {
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
 
-  const storeData =  () => {  
+  /*const storeData =  () => {  
     AsyncStorage.getItem('@FAVORITES').then(data => {
       if(data !== null) {
         setFavorites(JSON.parse(data))
@@ -37,15 +37,16 @@ export default function Detail() {
     }).catch()
    }
     
-      
-  
+      useEffect(() => {
+        storeData()
+      },[])*/
+  console.log("Favorite list", state.favoritesList);
   const handleAddFavorites = async (marvel) => {
     dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}})
     setSelection(true)
-    storeData()
-    AsyncStorage.setItem('@FAVORITES', JSON.stringify(state.favoritesList)).then(() => {
-      setFavorites([...favorites,...state.favoritesList])
-    }).catch(Error)
+    /*AsyncStorage.setItem('@FAVORITES', JSON.stringify(state.favoritesList)).then(() => {
+      setFavorites(state.favoritesList)
+    }).catch(Error)*/
   }
   
   
