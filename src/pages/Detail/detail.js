@@ -6,7 +6,6 @@ import {
   FlatList,
   Image,
   SafeAreaView,
-  ScrollView,
   Text,
   View,
 } from 'react-native';
@@ -15,6 +14,7 @@ import styles from './detail.styles';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
 import {MarvelContext} from '../../Context/MarvelProvider';
 import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Detail() {
   const route = useRoute();
@@ -22,16 +22,33 @@ export default function Detail() {
   const navigation = useNavigation();
   const {t, i18} = useTranslation()
 
-  const {dispatch, isSelected, setSelection} = useContext(MarvelContext);
+  const {setFavorites,favorites,state, dispatch, isSelected, setSelection} = useContext(MarvelContext);
 
   const handleNavigation = ({item}) => (
     <ComicCard item = {item} onPress = {() => navigation.navigate('ComicPage', {item:item})} />
   );
-  const handleAddFavorites = (marvel) => {
-    dispatch({type: 'ADD_TO_FAVORITES_COMIC', payload: {marvel}});
-    setSelection(true)
-  }
 
+  const storeData =  () => {  
+    AsyncStorage.getItem('@FAVORITES').then(data => {
+      if(data !== null) {
+        setFavorites(JSON.parse(data))
+        console.log(favorites)
+      }
+    }).catch()
+   }
+    
+      
+  
+  const handleAddFavorites = async (marvel) => {
+    dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}})
+    setSelection(true)
+    storeData()
+    AsyncStorage.setItem('@FAVORITES', JSON.stringify(state.favoritesList)).then(() => {
+      setFavorites([...favorites,...state.favoritesList])
+    }).catch(Error)
+  }
+  
+  
   const endpoint = 'comics';
   const {data, loading} = useFetch(
     `https://gateway.marvel.com:443/v1/public/characters`,

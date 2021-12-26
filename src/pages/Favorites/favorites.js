@@ -6,19 +6,34 @@ import styles from './favorites.styles';
 import MainPageCard from '../../Component/Cards/MainPageCard';
 import useFetch from '../../hooks/useFetch';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
+import store from '../../Context/store';
 
 export default function Favorites() {
-  const {state, dispatch,setSelection} = useContext(MarvelContext);
-  const [favorites, setFavorites] = useState([])
+  const {setFavorites , favorites, state, dispatch,setSelection} = useContext(MarvelContext);
 
 
-  useEffect(() => {
-      
-    AsyncStorage.getItem('@FAVORITES').then(addFavorited => {
-      addFavorited && setFavorites(addFavorited);
-    });
+  
+  const storeData =  () => {  
+     AsyncStorage.getItem('@FAVORITES').then(data => {
+       if(data !== null) {
+         setFavorites(JSON.parse(data))
+         console.log(favorites)
+       }
+     }).catch()
+    }
+
+  
+
+  const  clearData = () => {
+    AsyncStorage.setItem('@FAVORITES', JSON.stringify([])).then(() => {
+      setFavorites([])
+    }).catch()
+  }
+  
+  
+
+
    
-  }, []);
 
 
   const handleRemoveFavorites = marvel =>
@@ -40,9 +55,10 @@ export default function Favorites() {
   return (
     <SafeAreaView>
       <Text>Favorites</Text>
-      <Button title='aaa' onPress={() => console.log(state.favoritesList)}></Button>
+      <Button title='clear' onPress={() => clearData() }></Button>
+      <Button title='get' onPress={() => storeData()}></Button>
       <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} numColumns={2}/>
-      <FlatList data={state.favoritesList} renderItem={renderMarvel}/>
+      <FlatList data={favorites} renderItem={renderMarvel} numColumns={2}/>
     </SafeAreaView>
   );
 }

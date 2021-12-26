@@ -13,10 +13,7 @@ export default function reducer(state, action) {
       }
 
       const updatedFavorites = [...state.favoritesList,selectedMarvel];
-
-      AsyncStorage.setItem('@FAVORITES', updatedFavorites);
-      console.log(updatedFavorites)
-
+    
       return {...state, favoritesList: updatedFavorites};
     }
     case 'ADD_TO_FAVORITES_COMIC': {
