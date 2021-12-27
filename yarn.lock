@@ -3629,7 +3629,12 @@
   "resolved" "https://registry.npmjs.org/human-signals/-/human-signals-1.1.1.tgz"
   "version" "1.1.1"
 
-"i18next@^21.6.3", "i18next@>= 19.0.0":
+"i18next-react-native-async-storage@^1.0.4":
+  "integrity" "sha512-udxag0zffOTy6aCaeEh+886wrIGdbpXjt+j9WdPMpXMN48u+rz/Ux9N9jonUA+r3viURK3Hg2aR7MS2jZ+lN2A=="
+  "resolved" "https://registry.npmjs.org/i18next-react-native-async-storage/-/i18next-react-native-async-storage-1.0.4.tgz"
+  "version" "1.0.4"
+
+"i18next@^21.6.3", "i18next@>= 19.0.0", "i18next@>=13.0.1":
   "integrity" "sha512-2uuRGslNQ8m7TRllsVs4cZuei5X9OgoPRB/Sj5oadUpxZaW+NYv3srn7zR+h8bCMhkux9z8HtnJdQM5Mz+Govw=="
   "resolved" "https://registry.npmjs.org/i18next/-/i18next-21.6.3.tgz"
   "version" "21.6.3"
