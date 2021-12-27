@@ -10,6 +10,10 @@
     "Characters":"Characters",
     "Note" : "Press on card for remove",
     "Languages": "Seleceted Languages",
-    "Theme": "Seleceted Theme"
+    "Theme": "Seleceted Theme",
+    "English": "English",
+    "Turkish": "Turkish",
+    "Dark": "Dark Theme",
+    "Default": "Default Theme"
   }
 }

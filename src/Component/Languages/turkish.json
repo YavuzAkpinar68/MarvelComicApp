@@ -10,6 +10,10 @@
     "Characters":"Karakterler",
     "Note": "Silmek için kartın üzerine basınız",
     "Languages": "Dili seçiniz",
-    "Theme": "Temayı seçiniz" 
+    "Theme": "Temayı seçiniz",
+    "English": "İngilizce",
+    "Turkish": "Türkçe",
+    "Dark": "Koyu Tema",
+    "Default": "Varsayılan Tema"
   }
 }
