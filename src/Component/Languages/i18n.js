@@ -1,9 +1,11 @@
 import i18next from "i18next";
-import { useContext } from "react";
+import React ,{useEffect, useContext } from "react";
 import { initReactI18next } from "react-i18next";
 import { TranslationContext } from "../../Context/TranslationContext/TranslationProvider";
 import english from "./english.json"
 import turkish from "./turkish.json"
+
+
 
 
 i18next.use(initReactI18next).init({
@@ -17,5 +19,6 @@ i18next.use(initReactI18next).init({
     useSuspense:false
   }
 })
+
 
 export default i18next

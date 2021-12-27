@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     fontSize:25,
     padding:10
+  },
+  icon:{
+    alignSelf:"center"
   }
 })
 
