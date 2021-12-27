@@ -8,6 +8,8 @@
     "CloseComic":"close comic",
     "Creators":"Creators",
     "Characters":"Characters",
-    "Note" : "Press on card for remove"
+    "Note" : "Press on card for remove",
+    "Languages": "Seleceted Languages",
+    "Theme": "Seleceted Theme"
   }
 }

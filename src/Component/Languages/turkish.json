@@ -8,6 +8,8 @@
     "CloseComic":"Kapat",
     "Creators":"Yapımcılar",
     "Characters":"Karakterler",
-    "Note": "Silmek için kartın üzerine basınız" 
+    "Note": "Silmek için kartın üzerine basınız",
+    "Languages": "Dili seçiniz",
+    "Theme": "Temayı seçiniz" 
   }
 }
