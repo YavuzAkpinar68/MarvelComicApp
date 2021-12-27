@@ -3,11 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView, Text, FlatList, Button} from 'react-native';
 import {MarvelContext} from '../../Context/MarvelProvider';
 import styles from './favorites.styles';
-import MainPageCard from '../../Component/Cards/MainPageCard';
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
+import { useTranslation } from 'react-i18next';
 
 export default function Favorites() {
   const {setFavorites , favorites, state, dispatch,setSelection} = useContext(MarvelContext);
+  const {t, i18n} = useTranslation()
 
 
   
@@ -28,24 +29,16 @@ export default function Favorites() {
   const handleRemoveFavorites = marvel =>
     dispatch({type: 'REMOVE_FROM_FAVORITES', payload: {marvel}});
     setSelection(false)
-
-  const handleRemoveFavoritesComic = marvel =>
-    dispatch({type: 'REMOVE_FROM_FAVORITES_COMIC', payload: {marvel}});  
-    setSelection(false)
-
-
-  const renderMarvel = ({item}) => (
-    <MainPageCard item={item} onPress={() => handleRemoveFavorites(item)} />
-  );
+  
   const renderMarvelComic = ({item}) => (
-    <ComicCard item={item} onPress={() => handleRemoveFavoritesComic(item)} />
+    <ComicCard item={item} onPress={() => handleRemoveFavorites(item)} />
   );
 
   return (
     <SafeAreaView>
-      <Text>Favorites</Text>
-      <FlatList data={state.favoritesListComic} renderItem={renderMarvelComic} numColumns={2}/>
-      <FlatList data={favorites} renderItem={renderMarvel} numColumns={2}/>
+      <Text style={styles.title}>{t('favorites')}</Text>
+      <Text style={styles.note}>{t('Note')}</Text>
+      <FlatList data={favorites} renderItem={renderMarvelComic} numColumns={2}/>
     </SafeAreaView>
   );
 }

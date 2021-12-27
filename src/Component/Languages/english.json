@@ -7,6 +7,7 @@
     "Comic":"comic",
     "CloseComic":"close comic",
     "Creators":"Creators",
-    "Characters":"Characters" 
+    "Characters":"Characters",
+    "Note" : "Press on card for remove"
   }
 }

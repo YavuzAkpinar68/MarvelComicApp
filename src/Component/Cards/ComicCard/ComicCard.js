@@ -11,7 +11,7 @@ const ComicCard = ({item, onPress}) => {
       source={{uri: `${item.thumbnail.path}.jpg`}}
       style={styles.image}>
     <View style={styles.textView}>
-      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.title}>{item.title||item.name}</Text>
     </View>
     </ImageBackground>
 

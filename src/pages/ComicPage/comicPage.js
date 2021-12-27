@@ -19,7 +19,7 @@ const ComicPage = ({item}) => {
 
   const handleAddFavorites = (marvel) => {
     setIsSelected(true)
-    dispatch({type: 'ADD_TO_FAVORITES_COMIC', payload: {marvel}});
+    dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
   }
 
   console.log(idInfo)
