@@ -1,5 +1,5 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {
   ActivityIndicator,
@@ -10,51 +10,53 @@ import {
   View,
 } from 'react-native';
 import useFetch from '../../hooks/useFetch';
-import styles from './detail.styles';
+import {MarvelContext} from '../../Context/MarvelProvider';
+import {useTranslation} from 'react-i18next';
+
 import ComicCard from '../../Component/Cards/ComicCard/ComicCard';
-import { MarvelContext } from '../../Context/MarvelProvider';
-import { useTranslation } from 'react-i18next';
+import styles from './detail.styles';
 
 export default function Detail() {
   const route = useRoute();
   const item = route.params.item;
   const navigation = useNavigation();
-  const { t, i18 } = useTranslation()
+  const {t} = useTranslation();
 
-  const { state, dispatch, isSelected, setSelection } = useContext(MarvelContext);
+  const {state, dispatch, isSelected, setSelection} = useContext(MarvelContext);
 
-  const handleNavigation = ({ item }) => (
-    <ComicCard item={item} onPress={() => navigation.navigate('ComicPage', { item: item })} />
+  const handleNavigation = ({item}) => (
+    <ComicCard
+      item={item}
+      onPress={() => navigation.navigate('ComicPage', {item: item})}
+    />
   );
 
-  console.log("Favorite list", state.favoritesList);
-  const handleAddFavorites = async (marvel) => {
-    dispatch({ type: 'ADD_TO_FAVORITES', payload: { marvel } })
-    setSelection(true)
-  }
-
+  const handleAddFavorites = async marvel => {
+    dispatch({type: 'ADD_TO_FAVORITES', payload: {marvel}});
+    setSelection(true);
+  };
 
   const endpoint = 'comics';
-  const { data, loading } = useFetch(
+
+  const {data, loading} = useFetch(
     `https://gateway.marvel.com:443/v1/public/characters`,
     `/${item.id}/${endpoint}`,
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.cardContainer}>
         <Image
           style={styles.image}
-          source={{ uri: `${item.thumbnail.path}.jpg` }}
+          source={{uri: `${item.thumbnail.path}.jpg`}}
         />
         <View style={styles.textView}>
           <Text style={styles.name}>{item.name}</Text>
           {item.description ? (
             <Text style={styles.description}>{item.description}</Text>
           ) : (
-            <Text style={styles.description}>No description</Text>
-          )
-          }
+            <Text style={styles.description}>{t('Description')}</Text>
+          )}
         </View>
       </View>
       <View style={styles.outsideOfCardContainer}>
@@ -62,7 +64,7 @@ export default function Detail() {
           <Icon
             name="heart"
             size={30}
-            color={isSelected ? 'red' : "gray"}
+            color={isSelected ? 'red' : 'gray'}
             onPress={() => handleAddFavorites(item)}
           />
         </View>
@@ -74,10 +76,9 @@ export default function Detail() {
             data={data}
             renderItem={handleNavigation}
             horizontal={true}
-            contentContainerstyle={{ alignItems: "flex-end" }}
+            contentContainerstyle={{alignItems: 'flex-end'}}
           />
-        )
-        }
+        )}
       </View>
     </SafeAreaView>
   );

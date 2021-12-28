@@ -1,14 +1,12 @@
-import React from "react";
-import { Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
-import styles from "./MainPageCardsStyle";
+import React from 'react';
+import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
+import styles from './MainPageCardsStyle';
 
-const MainPageCard = ({ item, onPress }) => {
+const MainPageCard = ({item, onPress}) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <ImageBackground
-        source={{ uri: `${item.thumbnail.path}.jpg` }}
+        source={{uri: `${item.thumbnail.path}.jpg`}}
         style={styles.image}>
         <View style={styles.textView}>
           <Text style={styles.name}>{item.name}</Text>
@@ -20,7 +18,7 @@ const MainPageCard = ({ item, onPress }) => {
         </View>
       </ImageBackground>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default MainPageCard
+export default MainPageCard;

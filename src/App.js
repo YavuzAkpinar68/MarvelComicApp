@@ -5,10 +5,10 @@ import ThemeProvider from './Context/ThemeContext/ThemeProvider';
 
 export default function App() {
   return (
-      <ThemeProvider>
-        <MarvelProvider>
-          <Navigation />
-        </MarvelProvider>
-      </ThemeProvider>
+    <ThemeProvider>
+      <MarvelProvider>
+        <Navigation />
+      </MarvelProvider>
+    </ThemeProvider>
   );
 }

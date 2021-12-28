@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios"
-import { Alert } from "react-native";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import {Alert} from 'react-native';
 
+const useFetch = (URI, id) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const useFetch = (URI,id) => {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const URL =
+    'ts=1&apikey=c10efc3a23bb8482602e195f69924f93&hash=d051dfd0bf99bcc7d3aa2cb83ca5dd1d';
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${URI}${id}?ts=1&apikey=c10efc3a23bb8482602e195f69924f93&hash=d051dfd0bf99bcc7d3aa2cb83ca5dd1d`)
-      setData(response.data.data.results)
+      const response = await axios.get(`${URI}${id}?${URL}`);
+      setData(response.data.data.results);
     } catch (error) {
-      Alert.alert(error.message)
+      Alert.alert(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
-  return{data, loading}
-}
+  return {data, loading};
+};
 
-export default useFetch
+export default useFetch;

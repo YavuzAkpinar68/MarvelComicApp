@@ -1,6 +1,5 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {TranslationContext} from '../../Context/TranslationContext/TranslationProvider';
 import english from './english.json';
 import turkish from './turkish.json';
 import AsyncStoragePlugin from 'i18next-react-native-async-storage';

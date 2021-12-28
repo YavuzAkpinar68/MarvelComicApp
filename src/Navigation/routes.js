@@ -1,7 +1,5 @@
 export default {
-    MAINPAGES : 'MainPages',
-    FAVORITES : 'Favorites',
-    SETTINGS : 'Settigs',
-    DETAIL : 'Detail',
-    COMIC : 'ComicPage'
-}
+  MAINPAGES: 'MainPages',
+  DETAIL: 'Detail',
+  COMIC: 'ComicPage',
+};
