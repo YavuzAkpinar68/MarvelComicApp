@@ -4,4 +4,4 @@
   
   <p>In this app we aimed to show Marvel Characters and their comics to the user. For that we used Marvel API.At this app we used AsyncStorage for theme and language options along with adding comics or characters to the favorites.For language options we used i18next package and for theme we used React Navigation's theme prop.We used React Navigation for navigation also Vector Icons and Swicth Selector packages for better visual experience.Lastly we used context structure for state management.  
   
-  ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/tree/main/src/gifs/5zc3cf.gif) ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/tree/main/src/gifs/5zc3i0.gif) ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/tree/main/src/gifs/5zc3n3.gif)
+  ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/blob/main/src/gifs/5zc3cf.gif) ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/tree/main/src/gifs/5zc3i0.gif) ![alt text](https://github.com/YavuzAkpinar68/MarvelComicApp/tree/main/src/gifs/5zc3n3.gif)
